@@ -1,9 +1,6 @@
-
-
 (function () {
   "use strict";
 
-  
   const CONFIG = {
     SESSION_KEY: "decide_portal_session",
     SAKURA_COUNT: 28,
