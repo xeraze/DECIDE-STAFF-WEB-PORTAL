@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Decide — правила поведения, коммуникации и корпоративные нормативы команды">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Decide — Правила команды</title>
+  <link rel="stylesheet" href="design.css">
+</head>
+<body data-current-page="rules" data-page="protected">
+
+  <div id="live-region" class="live-region" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="page-wrapper">
+
+    <header class="site-header" role="banner">
+      <a href="index.html" class="site-logo" aria-label="Decide — на главную">
+        <span class="site-logo__mark" aria-hidden="true"></span>
+        <span class="site-logo__text">Decide</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Основная навигация">
+        <a href="index.html" class="site-nav__link" data-page="home">
+          <span class="site-nav__icon" data-icon="home" aria-hidden="true"></span>
+          <span class="nav-label">Главная</span>
+        </a>
+        <a href="manual.html" class="site-nav__link" data-page="manual">
+          <span class="site-nav__icon" data-icon="book" aria-hidden="true"></span>
+          <span class="nav-label">Справочник</span>
+        </a>
+        <a href="rules.html" class="site-nav__link" data-page="rules" aria-current="page">
+          <span class="site-nav__icon" data-icon="clipboard" aria-hidden="true"></span>
+          <span class="nav-label">Правила</span>
+        </a>
+      </nav>
+
+      <div class="site-header__actions">
+        <button type="button" id="logout-btn" class="btn-logout hidden" aria-label="Выйти из портала">
+          Выйти
+        </button>
+      </div>
+    </header>
+
+    <main class="page-main" role="main">
+
+      
+      <div class="rules-banner" role="banner">
+        <div class="rules-banner__planet" role="img" aria-label="Символ политики сервера Decide"></div>
+        <div class="rules-banner__content">
+          <h1 class="rules-banner__title">Политика сервера</h1>
+          <p class="rules-banner__subtitle">
+            Нормативы поведения, коммуникации и корпоративной этики команды Decide.
+            Соблюдение правил обязательно для всех сотрудников без исключения.
+          </p>
+        </div>
+      </div>
+
+      <div class="rules-grid">
+
+        
+        <section class="rule-block" id="rule-general" aria-labelledby="rule-general-title">
+          <header class="rule-block__header">
+            <span class="rule-block__number" aria-hidden="true">01</span>
+            <h2 class="rule-block__title" id="rule-general-title">
+              Общие положения
+              <button
+                type="button"
+                class="tooltip-trigger"
+                tabindex="0"
+                aria-label="Подсказка: общие положения"
+              >
+                ?
+                <span class="tooltip-popup" role="tooltip">
+                  Этот раздел устанавливает базовые принципы, обязательные для всех
+                  сотрудников независимо от роли и стажа.
+                </span>
+              </button>
+            </h2>
+          </header>
+
+          <div class="rule-block__content">
+            <p>
+              Каждый сотрудник команды Decide обязан ознакомиться с настоящими правилами
+              до начала работы и соблюдать их в полном объёме. Незнание правил не освобождает
+              от ответственности за их нарушение.
+            </p>
+            <ul class="rule-list">
+              <li>Уважительное отношение к коллегам, участникам и руководству</li>
+              <li>Соблюдение субординации согласно иерархии ролей</li>
+              <li>Конфиденциальность внутренней информации команды</li>
+              <li>Актуальность знаний о правилах — при изменениях обязательно перечитать документ</li>
+              <li>Немедленное информирование Administrator о конфликтах и инцидентах</li>
+            </ul>
+          </div>
+        </section>
+
+        
+        <section class="rule-block" id="rule-behavior" aria-labelledby="rule-behavior-title">
+          <header class="rule-block__header">
+            <span class="rule-block__number" aria-hidden="true">02</span>
+            <h2 class="rule-block__title" id="rule-behavior-title">
+              Поведение на сервере
+              <button
+                type="button"
+                class="tooltip-trigger"
+                tabindex="0"
+                aria-label="Подсказка: поведение на сервере"
+              >
+                ?
+                <span class="tooltip-popup" role="tooltip">
+                  Правила распространяются на все каналы Discord: текстовые, голосовые
+                  и личные сообщения между сотрудниками в рабочем контексте.
+                </span>
+              </button>
+            </h2>
+          </header>
+
+          <div class="rule-block__content">
+            <p>
+              Сотрудник Decide представляет команду в каждом своём действии на сервере.
+              Поведение должно соответствовать корпоративному стилю и не наносить
+              репутационный ущерб проекту.
+            </p>
+            <ul class="rule-list">
+              <li>Запрещены оскорбления, унижения и дискриминация в любой форме</li>
+              <li>Запрещён спам, флуд и засорение каналов нерелевантным контентом</li>
+              <li>Запрещено разглашение личных данных участников без согласия</li>
+              <li>Запрещена реклама сторонних проектов без одобрения Director</li>
+              <li>Запрещено использование ботов и скриптов без разрешения Technical Administrator</li>
+              <li>Голосовые каналы: отсутствие посторонних шумов, микрофон по необходимости</li>
+              <li>Рабочие каналы используются строго по назначению</li>
+            </ul>
+          </div>
+        </section>
+
+        
+        <section class="rule-block" id="rule-forbidden-words" aria-labelledby="rule-forbidden-title">
+          <header class="rule-block__header">
+            <span class="rule-block__number" aria-hidden="true">03</span>
+            <h2 class="rule-block__title" id="rule-forbidden-title">
+              Запрещённые слова и выражения
+              <button
+                type="button"
+                class="tooltip-trigger"
+                tabindex="0"
+                aria-label="Подсказка: запрещённые слова"
+              >
+                ?
+                <span class="tooltip-popup" role="tooltip">
+                  Список не является исчерпывающим. Administrator вправе применить
+                  санкции за любую лексику, нарушающую этику команды, даже если она
+                  не указана явно.
+                </span>
+              </button>
+            </h2>
+          </header>
+
+          <div class="rule-block__content">
+            <p>
+              Использование следующих слов и выражений запрещено в любых каналах команды.
+              Нарушение влечёт предупреждение; при повторении — мут или снятие с должности.
+            </p>
+
+            <div class="forbidden-words" role="list" aria-label="Список запрещённых слов">
+              <span class="forbidden-word" role="listitem">мат (любые формы)</span>
+              <span class="forbidden-word" role="listitem">оскорбления национальности</span>
+              <span class="forbidden-word" role="listitem">унижение по полу</span>
+              <span class="forbidden-word" role="listitem">призывы к насилию</span>
+              <span class="forbidden-word" role="listitem">разжигание конфликтов</span>
+              <span class="forbidden-word" role="listitem">токсичные мемы</span>
+              <span class="forbidden-word" role="listitem">обход цензуры*</span>
+              <span class="forbidden-word" role="listitem">доксинг-термины</span>
+              <span class="forbidden-word" role="listitem">оскорбления участников</span>
+              <span class="forbidden-word" role="listitem">политические провокации</span>
+            </div>
+
+            <p style="margin-top: 1rem;">
+              <em class="text-muted">* Обход цензуры — намеренное искажение запрещённых слов
+              (замена букв, leet-speak, пробелы) с целью обойти фильтры.</em>
+            </p>
+          </div>
+        </section>
+
+        
+        <section class="rule-block" id="rule-communication" aria-labelledby="rule-communication-title">
+          <header class="rule-block__header">
+            <span class="rule-block__number" aria-hidden="true">04</span>
+            <h2 class="rule-block__title" id="rule-communication-title">
+              Рекомендации по коммуникации
+              <button
+                type="button"
+                class="tooltip-trigger"
+                tabindex="0"
+                aria-label="Подсказка: коммуникация"
+              >
+                ?
+                <span class="tooltip-popup" role="tooltip">
+                  Грамотная коммуникация — основа профессиональной среды.
+                  Эти рекомендации помогают поддерживать рабочий тон общения.
+                </span>
+              </button>
+            </h2>
+          </header>
+
+          <div class="rule-block__content">
+            <p>
+              Качественная коммуникация повышает эффективность команды и формирует
+              доверие у участников. Следуйте этим рекомендациям во всех рабочих диалогах.
+            </p>
+            <ul class="rule-list">
+              <li>Обращайтесь к коллегам по никнейму или роли — не используйте уничижительные прозвища</li>
+              <li>Формулируйте мысли чётко и по существу; избегайте пассивной агрессии</li>
+              <li>При критике конструктивно указывайте на проблему, а не на личность</li>
+              <li>Отвечайте на обращения в течение 24 часов в рабочих каналах</li>
+              <li>Используйте треды для обсуждения конкретных тем — не уводите общий чат в оффтоп</li>
+              <li>Эмодзи и стикеры — умеренно; в официальных объявлениях воздержитесь от них</li>
+              <li>Капслок допустим только для акцентирования одного слова, не целых предложений</li>
+              <li>При недопонимании — уточняйте, а не предполагайте худшее</li>
+            </ul>
+          </div>
+        </section>
+
+        
+        <section class="rule-block" id="rule-ethics" aria-labelledby="rule-ethics-title">
+          <header class="rule-block__header">
+            <span class="rule-block__number" aria-hidden="true">05</span>
+            <h2 class="rule-block__title" id="rule-ethics-title">
+              Рабочая этика
+              <button
+                type="button"
+                class="tooltip-trigger"
+                tabindex="0"
+                aria-label="Подсказка: рабочая этика"
+              >
+                ?
+                <span class="tooltip-popup" role="tooltip">
+                  Этические нормы определяют профессиональное поведение сотрудника
+                  за пределами прямых запретов — это стандарты, к которым стоит стремиться.
+                </span>
+              </button>
+            </h2>
+          </header>
+
+          <div class="rule-block__content">
+            <ul class="rule-list">
+              <li>Честность в отчётах и коммуникации с руководством</li>
+              <li>Своевременное информирование о невозможности выполнить задачу в срок</li>
+              <li>Недопустимость присвоения чужих заслуг</li>
+              <li>Запрет на использование служебного положения в личных целях</li>
+              <li>Лояльность к команде при внешних коммуникациях</li>
+              <li>Инициативность приветствуется, но согласовывайте крупные изменения с руководством</li>
+            </ul>
+          </div>
+        </section>
+
+        
+        <section class="rule-block" id="rule-sanctions" aria-labelledby="rule-sanctions-title">
+          <header class="rule-block__header">
+            <span class="rule-block__number" aria-hidden="true">06</span>
+            <h2 class="rule-block__title" id="rule-sanctions-title">
+              Система санкций
+              <button
+                type="button"
+                class="tooltip-trigger"
+                tabindex="0"
+                aria-label="Подсказка: система санкций"
+              >
+                ?
+                <span class="tooltip-popup" role="tooltip">
+                  Градация санкций применяется по усмотрению Administrator
+                  с учётом тяжести нарушения и истории сотрудника.
+                </span>
+              </button>
+            </h2>
+          </header>
+
+          <div class="rule-block__content">
+            <p>
+              При нарушении правил применяется следующая градация мер воздействия.
+              Director сохраняет право применить санкцию любого уровня без предупреждения
+              при грубом нарушении.
+            </p>
+            <ul class="rule-list">
+              <li><strong>Устное предупреждение</strong> — первичное нарушение незначительного характера</li>
+              <li><strong>Письменное предупреждение</strong> — повторное или более серьёзное нарушение</li>
+              <li><strong>Мут (1–7 дней)</strong> — систематические нарушения или грубость</li>
+              <li><strong>Снятие с должности</strong> — грубое или неоднократное нарушение</li>
+              <li><strong>Бан</strong> — решение Director при нанесении критического ущерба команде</li>
+            </ul>
+          </div>
+        </section>
+
+        
+        <section class="rule-block" id="rule-confidentiality" aria-labelledby="rule-confidentiality-title">
+          <header class="rule-block__header">
+            <span class="rule-block__number" aria-hidden="true">07</span>
+            <h2 class="rule-block__title" id="rule-confidentiality-title">
+              Конфиденциальность
+              <button
+                type="button"
+                class="tooltip-trigger"
+                tabindex="0"
+                aria-label="Подсказка: конфиденциальность"
+              >
+                ?
+                <span class="tooltip-popup" role="tooltip">
+                  Утечка внутренней информации может нанести серьёзный ущерб
+                  проекту и повлечёт немедленное снятие с должности.
+                </span>
+              </button>
+            </h2>
+          </header>
+
+          <div class="rule-block__content">
+            <ul class="rule-list">
+              <li>Запрещено передавать содержимое закрытых каналов третьим лицам</li>
+              <li>Запрещено публиковать внутренние обсуждения за пределами команды</li>
+              <li>Доступ к порталу Decide — строго персонален</li>
+              <li>Технические данные (токены, пароли, IP) не передаются в открытых каналах</li>
+              <li>При увольнении доступ ко всем ресурсам отзывается в течение 24 часов</li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+
+    <footer class="brand-footer" role="contentinfo">
+      <p class="brand-footer__text">D E C I D E</p>
+    </footer>
+
+  </div>
+
+  <script src="logics.js"></script>
+</body>
+</html>
