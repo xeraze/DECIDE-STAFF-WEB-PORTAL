@@ -3,108 +3,385 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DECIDE · Staff Portal</title>
+<title>DECIDE | Staff Web-Portal</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><polygon points='32,4 38,22 57,22 43,34 49,52 32,41 15,52 21,34 7,22 26,22' fill='%23b01030'/></svg>" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="design.css" />
-</head>
+
+<style>
+  *, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  :root {
+    --bg-dark: #100a13;
+    --card-bg: #1a101f;
+    --accent-red: #b01030;
+    --accent-red-bright: #e01840;
+    --text-main: #e9dff5;
+    --text-muted: #7f6a9a;
+    --border-color: rgba(176, 16, 48, 0.3);
+    --radius: 14px;
+    --transition-speed: 0.3s ease-in-out;
+    --font-main: 'Inter', sans-serif;
+  }
+  html, body {
+    height: 100%;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--accent-red);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-red-bright);
+  }
+
+  #auth-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-red-bright), var(--accent-red));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 999;
+    user-select: none;
+  }
+
+  #auth-logo {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 8px rgba(176,16,48,0.6));
+    margin-bottom: 2rem;
+  }
+
+  #auth-title {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 7px;
+    color: white;
+    margin-bottom: 0.5rem;
+    user-select: none;
+    font-feature-settings: 'liga' off;
+  }
+
+  #auth-subtitle {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-bottom: 3rem;
+    user-select: none;
+  }
+
+  form#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+  }
+
+  label[for="login-password"] {
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    color: white;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+
+  input#login-password {
+    background: var(--card-bg);
+    border: 1.8px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: border-color var(--transition-speed);
+    outline-offset: 2px;
+  }
+  input#login-password::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  input#login-password:focus {
+    border-color: white;
+    box-shadow: 0 0 15px var(--accent-red-bright);
+    outline: none;
+  }
+
+  #error-msg {
+    margin-top: 6px;
+    min-height: 22px;
+    color: #ff5353;
+    font-weight: 600;
+    font-size: 0.85rem;
+    user-select: none;
+  }
+
+  button#login-submit {
+    margin-top: 2rem;
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-red-bright));
+    border-radius: var(--radius);
+    padding: 16px 0;
+    color: white;
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: 3.5px;
+    cursor: pointer;
+    border: none;
+    transition: background var(--transition-speed), box-shadow var(--transition-speed), transform 0.2s ease;
+    box-shadow: 0 0 25px rgba(224, 18, 47, 0.7);
+    user-select: none;
+  }
+  button#login-submit:hover {
+    background: linear-gradient(135deg, var(--accent-red-bright), var(--accent-red));
+    box-shadow: 0 0 35px rgba(224, 18, 47, 0.95);
+    transform: translateY(-3px);
+  }
+  button#login-submit:active {
+    box-shadow: 0 0 20px rgba(224, 18, 47, 0.7);
+    transform: translateY(0);
+  }
+
+  #loading-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 998;
+    user-select: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  #loading-screen.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  #loading-text {
+    color: var(--text-main);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    margin-bottom: 1.6rem;
+  }
+  #loading-progress {
+    width: 340px;
+    height: 14px;
+    background: var(--card-bg);
+    border-radius: 30px;
+    box-shadow: inset 0 0 15px rgba(255, 20, 50, 0.15);
+    overflow: hidden;
+  }
+  #loading-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-red), var(--accent-red-bright));
+    width: 0%;
+    border-radius: 30px 0 0 30px;
+    transition: width 0.3s ease;
+  }
+
+  #dashboard {
+    height: 100vh;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    animation: fadeInUp 0.7s ease forwards;
+  }
+  #dashboard.active {
+    display: flex;
+  }
+
+  header.nav-header {
+    flex-shrink: 0;
+    background: var(--card-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 56px;
+    border-bottom: 1.5px solid var(--border-color);
+    box-shadow: 0 0 35px var(--accent-red);
+    user-select: none;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-container svg {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 14px var(--accent-red));
+  }
+  .logo-text {
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    background: linear-gradient(120deg, white, var(--accent-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: default;
+  }
+  nav.main-nav {
+    display: flex;
+    gap: 22px;
+  }
+  nav.main-nav a {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 14px 26px;
+    border-radius: var(--radius);
+    transition: color var(--transition-speed), background var(--transition-speed);
+    user-select: none;
+  }
+  nav.main-nav a:hover, nav.main-nav a.active {
+    background: var(--accent-red);
+    color: white;
+    box-shadow: 0 0 50px var(--accent-red);
+  }
+
+  main.portal-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 56px 68px 80px;
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+
+</style>
 <body>
-<canvas id="stars"></canvas>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="decide-strip"><span>D</span><span>E</span><span>C</span><span>I</span><span>D</span><span>E</span></div>
 
-<div id="auth-screen">
-  <div class="auth-card">
-    <div class="auth-logo">
-      <div class="logo-wrap">
-        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="28,3 34,20 52,20 38,31 44,48 28,38 12,48 18,31 4,20 22,20" fill="#b01030"/>
-          <circle cx="28" cy="28" r="8" fill="white" fill-opacity="0.1"/>
-          <circle cx="28" cy="28" r="4" fill="white" fill-opacity="0.3"/>
+  <section id="auth-screen" role="dialog" aria-labelledby="auth-title" aria-describedby="auth-desc">
+    <svg id="auth-logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="32,4 38,22 57,22 43,34 49,52 32,41 15,52 21,34 7,22 26,22" fill="#b01030"/>
+      <circle cx="32" cy="32" r="10" fill="white" fill-opacity="0.1"/>
+      <circle cx="32" cy="32" r="5" fill="white" fill-opacity="0.3"/>
+    </svg>
+    <h1 id="auth-title">DECIDE</h1>
+    <p id="auth-desc">Staff Portal - вход в систему</p>
+
+    <form id="login-form" novalidate>
+      <label for="login-password">Пароль доступа</label>
+      <input type="password" id="login-password" placeholder="••••••••••" aria-describedby="error-msg" aria-required="true" autocomplete="current-password" />
+      <div id="error-msg" role="alert" aria-live="assertive"></div>
+      <button id="login-submit" type="submit" aria-label="Войти">Войти →</button>
+    </form>
+  </section>
+
+  <section id="loading-screen" aria-live="polite" aria-busy="true" aria-label="Загрузка" tabindex="-1">
+    <div id="loading-text">Загрузка, пожалуйста подождите...</div>
+    <div id="loading-progress">
+      <div id="loading-progress-fill"></div>
+    </div>
+  </section>
+
+  <div id="dashboard" role="main" tabindex="-1" aria-label="DECIDE Staff Portal">
+
+    <header class="nav-header" role="banner">
+      <div class="logo-container" aria-label="Логотип DECIDE">
+        <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <polygon points="14,2 17,10 26,10 19,15 22,24 14,19 6,24 9,15 2,10 11,10" fill="#b01030"/>
         </svg>
+        <span class="logo-text">DECIDE</span>
       </div>
-      <div>
-        <div class="auth-title">DECIDE</div>
-        <div class="auth-sub">Staff Web-Portal</div>
-      </div>
-    </div>
-    <div id="step-pass">
-      <label class="auth-label">Пароль доступа</label>
-      <input type="password" id="pass-input" class="auth-input" placeholder="••••••••••••" />
-      <button class="auth-btn" id="btn-pass">Продолжить</button>
-    </div>
-    <div id="step-otp" class="hidden">
-      <p class="otp-note">8-значный код был отправлен в Discord.<br />Введите его для подтверждения.</p>
-      <label class="auth-label">Код подтверждения</label>
-      <input type="text" id="otp-input" class="auth-input otp" placeholder="00000000" maxlength="8" autocomplete="off" />
-      <button class="auth-btn" id="btn-otp">Войти в портал</button>
-    </div>
-  </div>
-</div>
+      <nav class="main-nav" role="navigation" aria-label="Главное меню">
+        <a href="#" class="active" aria-current="page" tabindex="0">Главная</a>
+        <a href="#" tabindex="0">Справочник</a>
+        <a href="#" tabindex="0">Правила</a>
+      </nav>
+    </header>
 
-<div id="dashboard" class="hidden">
-  <header class="dash-nav">
-    <div class="nav-logo">
-      <svg viewBox="0 0 28 28" fill="none"><polygon points="14,2 17,10 26,10 19,15 22,24 14,19 6,24 9,15 2,10 11,10" fill="#b01030"/></svg>
-      <span class="nav-logo-text">Decide</span>
-    </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-link active">Главная</a>
-      <a href="manual.html" class="nav-link">Справочник</a>
-      <a href="rules.html" class="nav-link">Правила</a>
-    </nav>
-  </header>
-  <div class="dash-body">
-    <div class="welcome-block">
-      <div class="welcome-label">Добро пожаловать</div>
-      <div class="welcome-title">Staff Portal</div>
-      <div class="welcome-sub">Веб-Портал для персонала · Decide</div>
-    </div>
-    <div class="section-head">Разделы портала</div>
-    <div class="cards-grid">
-      <a href="manual.html" class="portal-card">
-        <div class="c-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        </div>
-        <h3>Справочник</h3>
-        <p>Иерархия персонала, должностные инструкции, обязанности и руководство по верификации.</p>
-        <div class="c-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-      </a>
-      <a href="rules.html" class="portal-card">
-        <div class="c-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Правила</h3>
-        <p>Правила сервера, запрещённый контент, система предупреждений и порядок модерации.</p>
-        <div class="c-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-      </a>
-      <div class="portal-card disabled">
-        <div class="c-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-        <h3>В разработке</h3>
-        <p>Этот раздел находится в разработке и будет доступен позже.</p>
-      </div>
-    </div>
-    <div class="section-head">Объявления</div>
-    <div class="announce-grid">
-      <div class="a-card">
-        <span class="badge b-red">Обновление</span>
-        <h4>Запуск Staff Portal</h4>
-        <p>Портал официально запущен. Здесь будут размещаться все важные материалы, регламенты и обновления для персонала.</p>
-        <div class="a-date">Июнь 2026</div>
-      </div>
-      <div class="a-card">
-        <span class="badge b-blue">Инфо</span>
-        <h4>Материалы пополняются</h4>
-        <p>Правила, мануалы и иерархия находятся в процессе наполнения. Следите за обновлениями.</p>
-        <div class="a-date">Июнь 2026</div>
-      </div>
-    </div>
-  </div>
-</div>
+    <main class="portal-content">
+      <section class="welcome-section" tabindex="0" aria-label="Добро пожаловать">
+        <div class="welcome-label">Добро пожаловать</div>
+        <h2 class="welcome-title">Staff Portal</h2>
+        <p class="welcome-subtitle">Портал для персонала · DECIDE</p>
+      </section>
 
-<script src="logics.js"></script>
+    </main>
+
+  </div>
+
+<script>
+
+  const loginScreen = document.getElementById('auth-screen');
+  const loadingScreen = document.getElementById('loading-screen');
+  const dashboard = document.getElementById('dashboard');
+
+  const loginForm = document.getElementById('login-form');
+  const loginPassword = document.getElementById('login-password');
+  const errorMsg = document.getElementById('error-msg');
+
+  const loadingProgressFill = document.getElementById('loading-progress-fill');
+
+  const VALID_PASS = 'DECIDE2026';
+
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    errorMsg.textContent = '';
+
+    const val = loginPassword.value.trim();
+    if (!val) {
+      errorMsg.textContent = 'Введите пароль для доступа.';
+      loginPassword.focus();
+      return;
+    }
+    if (val !== VALID_PASS) {
+      errorMsg.textContent = 'Неверный пароль.';
+      loginPassword.focus();
+      return;
+    }
+
+    loginScreen.style.display = 'none';
+    loadingScreen.classList.add('active');
+    simulateLoading();
+  });
+
+  function simulateLoading() {
+    let progress = 0;
+    loadingProgressFill.style.width = '0%';
+
+    const interval = setInterval(() => {
+      progress += Math.floor(Math.random() * 10) + 5;
+      if (progress >= 100) progress = 100;
+      loadingProgressFill.style.width = progress + '%';
+
+      if (progress === 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          loadingScreen.classList.remove('active');
+          dashboard.classList.add('active');
+          dashboard.focus();
+        }, 600);
+      }
+    }, 250);
+  }
+
+  loginPassword.focus();
+</script>
+
 </body>
 </html>
