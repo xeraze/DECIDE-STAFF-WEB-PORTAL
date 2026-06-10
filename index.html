@@ -1,65 +1,168 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DECIDE | Staff Web-Portal</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><polygon points='32,4 38,22 57,22 43,34 49,52 32,41 15,52 21,34 7,22 26,22' fill='%23b01030'/></svg>" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="design.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Decide — внутренний веб-портал команды">
+  <meta name="theme-color" content="#050508">
+  <title>Decide — Веб-Портал</title>
+  <link rel="stylesheet" href="design.css">
 </head>
-<body>
+<body data-current-page="home">
 
-<section id="auth-screen" role="dialog" aria-labelledby="auth-title" aria-describedby="auth-desc">
-  <svg id="auth-logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="32,4 38,22 57,22 43,34 49,52 32,41 15,52 21,34 7,22 26,22" fill="#b01030"/>
-    <circle cx="32" cy="32" r="10" fill="white" fill-opacity="0.1"/>
-    <circle cx="32" cy="32" r="5" fill="white" fill-opacity="0.3"/>
-  </svg>
-  <h1 id="auth-title">DECIDE</h1>
-  <p id="auth-desc">Staff Portal - вход в систему</p>
+  <div id="live-region" class="live-region" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <form id="login-form" novalidate>
-    <label for="login-password">Пароль доступа</label>
-    <input type="password" id="login-password" placeholder="••••••••••" aria-describedby="error-msg" aria-required="true" autocomplete="current-password" />
-    <div id="error-msg" role="alert" aria-live="assertive"></div>
-    <button id="login-submit" type="submit" aria-label="Войти">Войти →</button>
-  </form>
-</section>
+  <div class="page-wrapper">
 
-<section id="loading-screen" aria-live="polite" aria-busy="true" aria-label="Загрузка" tabindex="-1">
-  <div id="loading-text">Загрузка, пожалуйста подождите...</div>
-  <div id="loading-progress">
-    <div id="loading-progress-fill"></div>
+    <header class="site-header site-header--auth-only" role="banner">
+      <a href="index.html" class="site-logo" aria-label="Decide — на главную">
+        <span class="site-logo__mark" aria-hidden="true"></span>
+        <span class="site-logo__text">Decide</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Основная навигация">
+        <a href="index.html" class="site-nav__link" data-page="home" aria-current="page">
+          <span class="site-nav__icon" data-icon="home" aria-hidden="true"></span>
+          <span class="nav-label">Главная</span>
+        </a>
+        <a href="manual.html" class="site-nav__link" data-page="manual">
+          <span class="site-nav__icon" data-icon="book" aria-hidden="true"></span>
+          <span class="nav-label">Справочник</span>
+        </a>
+        <a href="rules.html" class="site-nav__link" data-page="rules">
+          <span class="site-nav__icon" data-icon="clipboard" aria-hidden="true"></span>
+          <span class="nav-label">Правила</span>
+        </a>
+      </nav>
+
+      <div class="site-header__actions">
+        <button type="button" id="logout-btn" class="btn-logout hidden" aria-label="Выйти из портала">
+          Выйти
+        </button>
+      </div>
+    </header>
+
+    <main class="page-main page-main--wide" role="main">
+
+      <section
+        class="screen screen--active auth-screen"
+        data-screen="auth"
+        id="auth-screen"
+        aria-label="Авторизация в портале"
+        aria-hidden="false"
+      >
+        <div class="auth-cinematic">
+          <div class="auth-cinematic__moon" role="img" aria-label="Красная луна Decide"></div>
+          <p class="auth-cinematic__tagline">Подключение к защищённому порталу</p>
+
+          <div class="auth-cinematic__card" id="cinematic-form">
+            <p class="auth-cinematic__brand">D E C I D E</p>
+            <div class="auth-cinematic__field">
+              <span class="auth-cinematic__label">Логин</span>
+              <div class="auth-cinematic__input" id="cinematic-login" aria-live="polite">
+                <span class="auth-cinematic__cursor" aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="auth-cinematic__field">
+              <span class="auth-cinematic__label">Пароль</span>
+              <div class="auth-cinematic__input auth-cinematic__input--password" id="cinematic-password" aria-live="polite">
+                <span class="auth-cinematic__cursor" aria-hidden="true"></span>
+              </div>
+            </div>
+            <button type="button" class="btn-primary auth-cinematic__btn" id="cinematic-btn" disabled>
+              Войти в портал
+            </button>
+          </div>
+
+          <div class="auth-cinematic__phase" id="cinematic-phase" hidden>
+            <div class="loading-spinner" id="cinematic-spinner" role="progressbar" aria-label="Загрузка"></div>
+            <p class="loading-screen__text" id="cinematic-status">Проверка доступа…</p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="screen dashboard-screen"
+        data-screen="dashboard"
+        id="dashboard-screen"
+        aria-label="Главная панель портала"
+        aria-hidden="true"
+      >
+        <div class="dashboard-sakura-bg" aria-hidden="true"></div>
+        <div class="dashboard-hero">
+          <div class="dashboard-hero__welcome">
+            <p class="dashboard-hero__greeting">С возвращением</p>
+            <h1 class="dashboard-hero__title">
+              Привет, <span id="dashboard-greeting-name">Сотрудник</span>!
+            </h1>
+            <p class="dashboard-hero__description">
+              Вы вошли в портал команды Decide. Здесь собраны справочник по иерархии ролей,
+              правила поведения и все необходимые материалы для работы.
+              Ваша текущая роль: <strong id="dashboard-user-role" class="text-accent">Staff</strong>.
+            </p>
+          </div>
+
+          <div class="dashboard-hero__visual dashboard-hero__visual--sakura">
+            <img
+              src="assets/brand-moon.png"
+              alt="Decide — красная луна и сакура"
+              loading="lazy"
+            >
+            <div class="dashboard-hero__visual-overlay" aria-hidden="true"></div>
+            <p class="dashboard-hero__visual-brand">D E C I D E</p>
+          </div>
+        </div>
+
+        <div class="dashboard-nav-grid" role="navigation" aria-label="Разделы портала">
+          <a href="manual.html" class="nav-card">
+            <div class="nav-card__icon" data-icon="book" aria-hidden="true"></div>
+            <h2 class="nav-card__title">Справочник ролей</h2>
+            <p class="nav-card__description">
+              Подробное описание иерархии должностей: Director, Technical Administrator,
+              Administrator, Support, Designer и Staff — обязанности, права и зоны ответственности.
+            </p>
+            <span class="nav-card__arrow">Перейти к справочнику →</span>
+          </a>
+
+          <a href="rules.html" class="nav-card">
+            <div class="nav-card__icon" data-icon="clipboard" aria-hidden="true"></div>
+            <h2 class="nav-card__title">Правила команды</h2>
+            <p class="nav-card__description">
+              Нормативы поведения, запрещённые слова, рекомендации по коммуникации
+              и корпоративный стиль общения внутри команды.
+            </p>
+            <span class="nav-card__arrow">Перейти к правилам →</span>
+          </a>
+        </div>
+
+        <div class="dashboard-stats" aria-label="Статистика портала">
+          <div class="stat-widget stat-widget--accent">
+            <div class="stat-widget__value">6</div>
+            <div class="stat-widget__label">Ролей в иерархии</div>
+          </div>
+          <div class="stat-widget">
+            <div class="stat-widget__value">24/7</div>
+            <div class="stat-widget__label">Доступ к порталу</div>
+          </div>
+          <div class="stat-widget">
+            <div class="stat-widget__value">100%</div>
+            <div class="stat-widget__label">Актуальность правил</div>
+          </div>
+          <div class="stat-widget">
+            <div class="stat-widget__value">Decide</div>
+            <div class="stat-widget__label">Команда</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="brand-footer" role="contentinfo">
+      <p class="brand-footer__text">D E C I D E</p>
+    </footer>
+
   </div>
-</section>
 
-<div id="dashboard" role="main" tabindex="-1" aria-label="DECIDE Staff Portal">
-
-  <header class="nav-header" role="banner">
-    <div class="logo-container" aria-label="Логотип DECIDE">
-      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <polygon points="14,2 17,10 26,10 19,15 22,24 14,19 6,24 9,15 2,10 11,10" fill="#b01030"/>
-      </svg>
-      <span class="logo-text">DECIDE</span>
-    </div>
-    <nav class="main-nav" role="navigation" aria-label="Главное меню">
-      <a href="#" class="active" aria-current="page" tabindex="0">Главная</a>
-      <a href="#" tabindex="0">Справочник</a>
-      <a href="#" tabindex="0">Правила</a>
-    </nav>
-  </header>
-
-  <main class="portal-content">
-    <section class="welcome-section" tabindex="0" aria-label="Добро пожаловать">
-      <div class="welcome-label">Добро пожаловать</div>
-      <h2 class="welcome-title">Staff Portal</h2>
-      <p class="welcome-subtitle">Портал для персонала · DECIDE</p>
-    </section>
-  </main>
-
-</div>
-
-<script src="logics.js"></script>
+  <script src="logics.js"></script>
 </body>
 </html>
