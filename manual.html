@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Decide — справочник по иерархии ролей и должностей команды">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Decide — Справочник ролей</title>
+  <link rel="stylesheet" href="design.css">
+</head>
+<body data-current-page="manual" data-page="protected">
+
+  <div id="live-region" class="live-region" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="page-wrapper">
+
+    <header class="site-header" role="banner">
+      <a href="index.html" class="site-logo" aria-label="Decide — на главную">
+        <span class="site-logo__mark" aria-hidden="true"></span>
+        <span class="site-logo__text">Decide</span>
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Основная навигация">
+        <a href="index.html" class="site-nav__link" data-page="home">
+          <span class="site-nav__icon" data-icon="home" aria-hidden="true"></span>
+          <span class="nav-label">Главная</span>
+        </a>
+        <a href="manual.html" class="site-nav__link" data-page="manual" aria-current="page">
+          <span class="site-nav__icon" data-icon="book" aria-hidden="true"></span>
+          <span class="nav-label">Справочник</span>
+        </a>
+        <a href="rules.html" class="site-nav__link" data-page="rules">
+          <span class="site-nav__icon" data-icon="clipboard" aria-hidden="true"></span>
+          <span class="nav-label">Правила</span>
+        </a>
+      </nav>
+
+      <div class="site-header__actions">
+        <button type="button" id="logout-btn" class="btn-logout hidden" aria-label="Выйти из портала">
+          Выйти
+        </button>
+      </div>
+    </header>
+
+    <main class="page-main" role="main">
+
+      <header class="page-hero">
+        <span class="page-hero__badge">Внутренний документ</span>
+        <h1 class="page-hero__title">Справочник иерархии</h1>
+        <p class="page-hero__subtitle">
+          Полное описание ролей и должностей в команде Decide. Каждая позиция имеет чётко
+          определённые обязанности, права доступа и зоны ответственности. Документ обязателен
+          к изучению всеми сотрудниками.
+        </p>
+      </header>
+
+      <div class="manual-layout">
+
+        
+        <aside class="manual-toc" role="navigation" aria-label="Оглавление справочника">
+          <h2 class="manual-toc__title">Содержание</h2>
+          <a href="#role-director" class="manual-toc__link">Director</a>
+          <a href="#role-tech-admin" class="manual-toc__link">Technical Administrator</a>
+          <a href="#role-administrator" class="manual-toc__link">Administrator</a>
+          <a href="#role-support" class="manual-toc__link">Support</a>
+          <a href="#role-designer" class="manual-toc__link">Designer</a>
+          <a href="#role-staff" class="manual-toc__link">Staff</a>
+        </aside>
+
+        
+        <div class="hierarchy-timeline" role="list" aria-label="Иерархия ролей команды">
+
+          
+          <article class="role-card" id="role-director" role="listitem">
+            <header class="role-card__header">
+              <div class="role-card__title-group">
+                <p class="role-card__level">Уровень 1 — Высшее руководство</p>
+                <h2 class="role-card__title">Директор</h2>
+                <p class="role-card__title-en">Director</p>
+              </div>
+              <span class="role-card__badge role-card__badge--director">Руководство</span>
+            </header>
+
+            <p class="role-card__description">
+              Директор является высшим руководящим лицом команды Decide. Принимает стратегические
+              решения, определяет направление развития проекта и несёт полную ответственность
+              за деятельность всей организации. Имеет безусловный приоритет при разрешении
+              конфликтных ситуаций и утверждении ключевых изменений.
+            </p>
+
+            <div class="role-card__sections">
+              <section class="role-section">
+                <h3 class="role-section__title">Обязанности</h3>
+                <ul class="role-section__list">
+                  <li>Формирование стратегии развития команды и проектов</li>
+                  <li>Утверждение кадровых решений и назначение на ключевые должности</li>
+                  <li>Контроль соблюдения правил и корпоративной этики</li>
+                  <li>Принятие финальных решений по спорным вопросам</li>
+                  <li>Представление команды во внешних коммуникациях</li>
+                  <li>Утверждение бюджета и крупных технических изменений</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Права</h3>
+                <ul class="role-section__list">
+                  <li>Полный административный доступ ко всем системам</li>
+                  <li>Право вето на любое решение нижестоящих ролей</li>
+                  <li>Назначение и снятие с должности любого сотрудника</li>
+                  <li>Изменение правил и регламентов команды</li>
+                  <li>Доступ к конфиденциальной информации проекта</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Зона ответственности</h3>
+                <ul class="role-section__list">
+                  <li>Общее руководство командой Decide</li>
+                  <li>Стратегическое планирование и развитие</li>
+                  <li>Корпоративная культура и ценности</li>
+                  <li>Юридические и репутационные риски</li>
+                </ul>
+              </section>
+            </div>
+          </article>
+
+          
+          <article class="role-card" id="role-tech-admin" role="listitem">
+            <header class="role-card__header">
+              <div class="role-card__title-group">
+                <p class="role-card__level">Уровень 2 — Техническое руководство</p>
+                <h2 class="role-card__title">Технический администратор</h2>
+                <p class="role-card__title-en">Technical Administrator</p>
+              </div>
+              <span class="role-card__badge role-card__badge--tech">Техническая роль</span>
+            </header>
+
+            <p class="role-card__description">
+              Технический администратор отвечает за инфраструктуру, серверы, боты и все
+              технические системы команды. Является главным специалистом по настройке,
+              обслуживанию и безопасности IT-ресурсов. Подчиняется напрямую Director.
+            </p>
+
+            <div class="role-card__sections">
+              <section class="role-section">
+                <h3 class="role-section__title">Обязанности</h3>
+                <ul class="role-section__list">
+                  <li>Администрирование серверов Discord и связанных сервисов</li>
+                  <li>Разработка, настройка и поддержка ботов</li>
+                  <li>Обеспечение информационной безопасности</li>
+                  <li>Резервное копирование и восстановление данных</li>
+                  <li>Техническая поддержка администраторов нижнего уровня</li>
+                  <li>Мониторинг работоспособности всех систем 24/7</li>
+                  <li>Внедрение и сопровождение веб-портала и интеграций</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Права</h3>
+                <ul class="role-section__list">
+                  <li>Полный root-доступ к серверам и хостингу</li>
+                  <li>Управление API-ключами и токенами ботов</li>
+                  <li>Настройка прав доступа на техническом уровне</li>
+                  <li>Развёртывание и откат обновлений</li>
+                  <li>Доступ к логам и системам мониторинга</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Зона ответственности</h3>
+                <ul class="role-section__list">
+                  <li>Техническая инфраструктура команды</li>
+                  <li>Безопасность данных и систем</li>
+                  <li>Бесперебойная работа сервисов</li>
+                  <li>Техническая документация</li>
+                </ul>
+              </section>
+            </div>
+          </article>
+
+          
+          <article class="role-card" id="role-administrator" role="listitem">
+            <header class="role-card__header">
+              <div class="role-card__title-group">
+                <p class="role-card__level">Уровень 3 — Администрирование</p>
+                <h2 class="role-card__title">Администратор</h2>
+                <p class="role-card__title-en">Administrator</p>
+              </div>
+              <span class="role-card__badge role-card__badge--admin">Администрирование</span>
+            </header>
+
+            <p class="role-card__description">
+              Администратор управляет повседневной жизнью сервера и команды: модерация,
+              организация мероприятий, работа с участниками. Является связующим звеном
+              между руководством и рядовыми сотрудниками.
+            </p>
+
+            <div class="role-card__sections">
+              <section class="role-section">
+                <h3 class="role-section__title">Обязанности</h3>
+                <ul class="role-section__list">
+                  <li>Модерация чатов и голосовых каналов</li>
+                  <li>Применение санкций согласно правилам команды</li>
+                  <li>Организация и проведение внутренних мероприятий</li>
+                  <li>Координация работы Support и Staff</li>
+                  <li>Обработка обращений и жалоб участников</li>
+                  <li>Ведение отчётности о проделанной работе</li>
+                  <li>Контроль соблюдения правил новыми участниками</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Права</h3>
+                <ul class="role-section__list">
+                  <li>Выдача предупреждений, мутов и банов</li>
+                  <li>Управление ролями участников (в рамках полномочий)</li>
+                  <li>Создание и редактирование каналов</li>
+                  <li>Доступ к модераторским инструментам</li>
+                  <li>Инициирование кадровых рекомендаций</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Зона ответственности</h3>
+                <ul class="role-section__list">
+                  <li>Порядок и дисциплина на сервере</li>
+                  <li>Качество модерации</li>
+                  <li>Актуальность правил в повседневной практике</li>
+                  <li>Обратная связь от участников</li>
+                </ul>
+              </section>
+            </div>
+          </article>
+
+          
+          <article class="role-card" id="role-support" role="listitem">
+            <header class="role-card__header">
+              <div class="role-card__title-group">
+                <p class="role-card__level">Уровень 4 — Поддержка</p>
+                <h2 class="role-card__title">Саппорт</h2>
+                <p class="role-card__title-en">Support</p>
+              </div>
+              <span class="role-card__badge role-card__badge--support">Поддержка</span>
+            </header>
+
+            <p class="role-card__description">
+              Сотрудник поддержки — первое лицо, с которым взаимодействуют участники при
+              возникновении вопросов или проблем. Обеспечивает оперативную помощь, собирает
+              обратную связь и эскалирует сложные случаи администраторам.
+            </p>
+
+            <div class="role-card__sections">
+              <section class="role-section">
+                <h3 class="role-section__title">Обязанности</h3>
+                <ul class="role-section__list">
+                  <li>Ответы на обращения участников в тикет-системе</li>
+                  <li>Консультирование по правилам и функционалу сервера</li>
+                  <li>Фиксация и передача багов техническому администратору</li>
+                  <li>Помощь новым участникам в адаптации</li>
+                  <li>Ведение базы знаний и FAQ</li>
+                  <li>Сбор предложений по улучшению сервиса</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Права</h3>
+                <ul class="role-section__list">
+                  <li>Доступ к тикет-системе и истории обращений</li>
+                  <li>Создание внутренних заметок по обращениям</li>
+                  <li>Эскалация тикетов администраторам</li>
+                  <li>Доступ к справочным материалам и документации</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Зона ответственности</h3>
+                <ul class="role-section__list">
+                  <li>Качество и скорость ответов на обращения</li>
+                  <li>Удовлетворённость участников поддержкой</li>
+                  <li>Актуальность FAQ и базы знаний</li>
+                </ul>
+              </section>
+            </div>
+          </article>
+
+          
+          <article class="role-card" id="role-designer" role="listitem">
+            <header class="role-card__header">
+              <div class="role-card__title-group">
+                <p class="role-card__level">Уровень 4 — Креатив</p>
+                <h2 class="role-card__title">Дизайнер</h2>
+                <p class="role-card__title-en">Designer</p>
+              </div>
+              <span class="role-card__badge role-card__badge--designer">Креатив</span>
+            </header>
+
+            <p class="role-card__description">
+              Дизайнер отвечает за визуальную идентичность команды Decide: оформление сервера,
+              баннеры, аватары, UI-элементы и промо-материалы. Обеспечивает единый стиль
+              во всех точках контакта с аудиторией.
+            </p>
+
+            <div class="role-card__sections">
+              <section class="role-section">
+                <h3 class="role-section__title">Обязанности</h3>
+                <ul class="role-section__list">
+                  <li>Разработка и поддержание брендбука команды</li>
+                  <li>Создание графики для Discord-сервера и соцсетей</li>
+                  <li>Дизайн интерфейсов ботов и веб-портала</li>
+                  <li>Подготовка материалов для мероприятий и анонсов</li>
+                  <li>Согласование визуала с Director и Administrator</li>
+                  <li>Адаптация дизайна под разные форматы и платформы</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Права</h3>
+                <ul class="role-section__list">
+                  <li>Доступ к исходным файлам бренда</li>
+                  <li>Предложение изменений визуального стиля</li>
+                  <li>Участие в обсуждении UI/UX решений</li>
+                  <li>Публикация утверждённых материалов</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Зона ответственности</h3>
+                <ul class="role-section__list">
+                  <li>Визуальная целостность бренда Decide</li>
+                  <li>Качество графических материалов</li>
+                  <li>Соблюдение стилевых гайдлайнов</li>
+                </ul>
+              </section>
+            </div>
+          </article>
+
+          
+          <article class="role-card" id="role-staff" role="listitem">
+            <header class="role-card__header">
+              <div class="role-card__title-group">
+                <p class="role-card__level">Уровень 5 — Базовый состав</p>
+                <h2 class="role-card__title">Сотрудник</h2>
+                <p class="role-card__title-en">Staff</p>
+              </div>
+              <span class="role-card__badge role-card__badge--staff">Базовая роль</span>
+            </header>
+
+            <p class="role-card__description">
+              Staff — базовая роль в команде Decide. Сотрудник выполняет порученные задачи,
+              участвует в жизни сервера и соблюдает все правила и регламенты. Является
+              фундаментом команды и может быть повышен при проявлении инициативы и компетентности.
+            </p>
+
+            <div class="role-card__sections">
+              <section class="role-section">
+                <h3 class="role-section__title">Обязанности</h3>
+                <ul class="role-section__list">
+                  <li>Соблюдение правил команды и корпоративной этики</li>
+                  <li>Выполнение поставленных задач в установленные сроки</li>
+                  <li>Активное участие в жизни сервера и мероприятиях</li>
+                  <li>Своевременная отчётность о проделанной работе</li>
+                  <li>Помощь новым участникам в рамках компетенций</li>
+                  <li>Изучение справочника и правил команды</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Права</h3>
+                <ul class="role-section__list">
+                  <li>Доступ к внутренним каналам команды</li>
+                  <li>Участие в обсуждениях и голосованиях</li>
+                  <li>Подача предложений по улучшению работы</li>
+                  <li>Обращение к Support и Administrator за помощью</li>
+                  <li>Доступ к порталу Decide и справочным материалам</li>
+                </ul>
+              </section>
+
+              <section class="role-section">
+                <h3 class="role-section__title">Зона ответственности</h3>
+                <ul class="role-section__list">
+                  <li>Личная дисциплина и соблюдение регламентов</li>
+                  <li>Качество выполнения порученных задач</li>
+                  <li>Репутация команды в общении с участниками</li>
+                </ul>
+              </section>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="brand-footer" role="contentinfo">
+      <p class="brand-footer__text">D E C I D E</p>
+    </footer>
+
+  </div>
+
+  <script src="logics.js"></script>
+</body>
+</html>
